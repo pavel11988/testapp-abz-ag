@@ -1,2 +1,2 @@
-/node-modules
-/Read-me
+*node_modules/*
+*ReadMe/*
