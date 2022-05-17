@@ -1,8 +1,13 @@
 import styled from "@emotion/styled";
-import backgroundImageMobile from "../../images/hero-mobile.webp";
-import backgroundImageTablet from "../../images/hero-tablet.webp";
-import backgroundImageDesktop from "../../images/hero-desktop.webp";
-import backgroundImageWide from "../../images/hero-wide.webp";
+
+import bgHeroMob1x from "../../images/bgHero/heroBackgroundMob1x.webp";
+import bgHeroMob2x from "../../images/bgHero/heroBackgroundMob2x.webp";
+import bgHeroTab1x from "../../images/bgHero/heroBackgroundTab1x.webp";
+import bgHeroTab2x from "../../images/bgHero/heroBackgroundTab2x.webp";
+import bgHeroDes1x from "../../images/bgHero/heroBackgroundDes1x.webp";
+import bgHeroDes2x from "../../images/bgHero/heroBackgroundDes2x.webp";
+import bgHeroWid1x from "../../images/bgHero/heroBackgroundWid1x.webp";
+import bgHeroWid2x from "../../images/bgHero/heroBackgroundWid2x.webp";
 
 export const Container = styled.section`
   text-align: center;
@@ -16,19 +21,32 @@ export const Container = styled.section`
 
   background-size: cover;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(${backgroundImageMobile});
+    url(${bgHeroMob1x});
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url(${bgHeroMob2x});
+  }
 
   @media (min-width: 768px) {
     padding-top: 89px;
     padding-bottom: 88px;
     padding-left: 194px;
     padding-right: 194px;
-
     height: 500px;
 
     background-size: cover;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url(${backgroundImageTablet});
+      url(${bgHeroTab1x});
+  }
+
+  @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url(${bgHeroTab2x});
   }
 
   @media (min-width: 1024px) {
@@ -42,7 +60,14 @@ export const Container = styled.section`
 
     background-size: cover;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url(${backgroundImageDesktop});
+      url(${bgHeroDes1x});
+  }
+
+  @media screen and (min-width: 1024px) and (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url(${bgHeroDes2x});
   }
 
   @media (min-width: 1170px) {
@@ -55,7 +80,15 @@ export const Container = styled.section`
 
     background-size: cover;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url(${backgroundImageWide});
+      url(${bgHeroWid1x});
+  }
+
+  @media (min-width: 1170px) and (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url(${bgHeroWid2x});
   }
 `;
 
