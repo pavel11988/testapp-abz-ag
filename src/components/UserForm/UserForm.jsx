@@ -23,6 +23,7 @@ import {
   Label,
   Input,
   Position,
+  WarningText,
 } from "./UsetForm.styled";
 
 const UserForm = ({ positions, onSubmit }) => {
@@ -85,6 +86,7 @@ const UserForm = ({ positions, onSubmit }) => {
           uploadPhoto.size > 5120000
         ) {
           setError(true);
+          setPhotoFile(uploadPhoto);
         } else {
           setPhotoFile(uploadPhoto);
           setError(false);
@@ -124,7 +126,7 @@ const UserForm = ({ positions, onSubmit }) => {
     }
   }
 
-  const BUTTON_SIGNIN = loading === false && error === false;
+  const BUTTON_SIGNIN = loading === false;
   const LOADING_SIGNIN =
     loading === true && error === false && emptyFields === false;
 
@@ -205,28 +207,30 @@ const UserForm = ({ positions, onSubmit }) => {
             ))}
         </PositionsContainer>
 
-        <div>
-          <ImageContainer htmlFor="photo-file">
-            <ImageInputContainer>
-              <ImageInput
-                type="file"
-                name="photo"
-                title="select"
-                accept=".jpg, .jpeg"
-                id="photo-file"
-                onChange={handlePhoto}
-              />
-              <p>Upload</p>
-            </ImageInputContainer>
-            <ImageLabel>
-              {!ERROR_PHOTO && photoFile !== null && photoFile.name}
-              {EMPTY_PHOTO && !ERROR_PHOTO && "Select photo"}
-              {ERROR_PHOTO &&
-                "The photo must be <5 MB and resolution >70x70 pixels"}
-            </ImageLabel>
-          </ImageContainer>
-        </div>
-        <br />
+        <ImageContainer htmlFor="photo-file">
+          <ImageInputContainer>
+            <ImageInput
+              type="file"
+              name="photo"
+              title="select"
+              accept=".jpg, .jpeg"
+              id="photo-file"
+              onChange={handlePhoto}
+            />
+            <p>Upload</p>
+          </ImageInputContainer>
+          <ImageLabel>
+            {photoFile !== null && photoFile.name}
+            {EMPTY_PHOTO && !ERROR_PHOTO && "Select photo"}
+          </ImageLabel>
+        </ImageContainer>
+
+        {ERROR_PHOTO && (
+          <WarningText>
+            The photo size should be smaller 5 MB and resolution more than 70x70
+            pixels
+          </WarningText>
+        )}
 
         <ButtonContainer>
           {LOADING_SIGNIN && <Loader color="#00BDD3" />}

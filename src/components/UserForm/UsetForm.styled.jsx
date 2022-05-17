@@ -78,13 +78,22 @@ export const NumberLabel = styled.label`
 export const PositionsContainer = styled.div`
   text-align: left;
   margin-bottom: 45px;
+
+  @media (min-width: 400px) and (max-width: 767px) {
+    width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 export const PositionsTitle = styled.p`
   margin-bottom: 11px;
 `;
 
 export const ImageContainer = styled.div`
-  min-width: 328px;
+  width: 328px;
+
+  margin-left: auto;
+  margin-right: auto;
   height: 54px;
   border: 1px solid var(--border-color);
   border-radius: 4px;
@@ -92,83 +101,6 @@ export const ImageContainer = styled.div`
 
   @media (min-width: 768px) {
     width: 380px;
-  }
-`;
-
-export const ImageInputContainer = styled.div`
-  border: 1px solid var(--black-text-color);
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  width: 82px;
-  height: 54px;
-  position: relative;
-
-  &:hover,
-  &:focus,
-  &:active {
-    border-color: var(--secondary-color);
-    color: var(--secondary-color);
-  }
-
-  & > p {
-    pointer-events: none;
-    position: absolute;
-    left: 17%;
-    top: 25%;
-  }
-`;
-
-export const ImageInput = styled.input`
-  width: 83px;
-  height: 54px;
-  color: transparent;
-  &::file-selector-button {
-    border-color: transparent;
-    color: transparent;
-    background-color: transparent;
-    width: 83px;
-    height: 54px;
-
-    cursor: pointer;
-  }
-`;
-
-export const ImageLabel = styled.div`
-  margin-left: 16px;
-  margin-right: auto;
-  align-self: center;
-  color: var(--grey-text-color);
-`;
-
-export const ButtonContainer = styled.div`
-  margin-top: 25px;
-  height: 48px;
-  text-align: center;
-  align-self: center;
-`;
-
-export const ButtonForm = styled.button`
-  width: 100px;
-  height: 34px;
-
-  border-radius: 80px;
-  border: transparent;
-
-  background-color: var(--button-normal-color);
-  color: var(--black-text-color);
-
-  &:not(:disabled) {
-    cursor: pointer;
-  }
-
-  &:hover {
-    background-color: var(--button-hover-color);
-    color: var(--black-text-color);
-  }
-
-  &:disabled {
-    color: var(--white-text-color);
-    background-color: var(--button-disabled-color);
   }
 `;
 
@@ -245,4 +177,97 @@ export const Label = styled.label`
 export const Input = styled.input`
   width: 20px;
   height: 20px;
+`;
+
+export const ImageInputContainer = styled.div`
+  border: 1px solid var(--black-text-color);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  width: 82px;
+  height: 54px;
+  position: relative;
+
+  left: -1px;
+  top: -1px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+  }
+
+  & > p {
+    pointer-events: none;
+    position: absolute;
+    left: 17%;
+    top: 25%;
+  }
+`;
+
+export const ImageInput = styled.input`
+  width: 83px;
+  height: 54px;
+  color: transparent;
+  position: absolute;
+
+  left: -2px;
+  top: -2px;
+
+  &::file-selector-button {
+    border-color: transparent;
+    color: transparent;
+    background-color: transparent;
+    width: 83px;
+    height: 54px;
+    cursor: pointer;
+  }
+`;
+
+export const ImageLabel = styled.div`
+  margin-left: 16px;
+  margin-right: auto;
+  align-self: center;
+  color: var(--grey-text-color);
+
+  left: -2px;
+  top: -2px;
+`;
+
+export const WarningText = styled.p`
+  font-size: 10px;
+  position: absolute;
+  color: red;
+`;
+
+export const ButtonContainer = styled.div`
+  margin-top: 25px;
+  height: 48px;
+  text-align: center;
+  align-self: center;
+`;
+
+export const ButtonForm = styled.button`
+  width: 100px;
+  height: 34px;
+
+  border-radius: 80px;
+  border: transparent;
+
+  background-color: var(--button-normal-color);
+  color: var(--black-text-color);
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: var(--button-hover-color);
+    color: var(--black-text-color);
+  }
+
+  &:disabled {
+    color: var(--white-text-color);
+    background-color: var(--button-disabled-color);
+  }
 `;
