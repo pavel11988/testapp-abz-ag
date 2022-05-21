@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { TextField } from "@mui/material";
 
 export const SignInFormContainer = styled.div`
   text-align: center;
@@ -32,22 +33,21 @@ export const TextInputsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  & > input {
-    margin-bottom: 50px;
-  }
 `;
 
-export const FormInput = styled.input`
+export const FormInput = styled(TextField)`
   width: 328px;
   height: 54px;
 
-  padding: 14px 0px 14px 16px;
+  /* color: red; */
+
+  margin-bottom: 50px;
+
+  /* padding: 14px 0px 14px 16px;  */
 
   background-color: var(--background-color);
-  border: 1px solid var(--border-color);
+  /* border: 1px solid var(--border-color); */
   border-radius: 4px;
-
   outline: transparent;
 
   &:hover,

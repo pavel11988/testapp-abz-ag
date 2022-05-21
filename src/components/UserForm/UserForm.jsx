@@ -1,4 +1,5 @@
 //libs/hooks
+import { red } from "@mui/material/colors";
 import { useEffect, useState } from "react";
 
 //components
@@ -8,7 +9,6 @@ import Loader from "../Loader/Loader";
 import {
   FormContainer,
   FormInput,
-  NumberLabel,
   PositionsContainer,
   PositionsTitle,
   ImageInput,
@@ -35,6 +35,10 @@ const UserForm = ({ positions, onSubmit }) => {
 
   const [emptyFields, setEmptyFields] = useState(true);
   const [error, setError] = useState(false);
+  const [errorName, setErrorName] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorNumber, setErrorNumber] = useState(false);
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -56,15 +60,64 @@ const UserForm = ({ positions, onSubmit }) => {
     switch (name) {
       case "name":
         setName(value);
+        validator({ type: "name", value: value });
         break;
       case "email":
-        setEmail(value);
+        setEmail(value.trim());
+        validator({ type: "email", value: value });
         break;
       case "phone":
-        setPhone(value);
+        setPhone(value.trim());
+        validator({ type: "phone", value: value });
         break;
       default:
         return;
+    }
+  };
+
+  const validator = ({ type, value }) => {
+    if (type === "name") {
+      if ((value.length > 60 || value.length < 2) && value.length !== 0) {
+        setErrorName(true);
+      } else {
+        setErrorName(false);
+      }
+    }
+
+    if (type === "email") {
+      if (value === "") {
+        setErrorEmail(false);
+        return;
+      }
+      if (
+        value.indexOf("@") > 1 &&
+        value.indexOf(".") > 3 &&
+        value.indexOf(".") !== value.length - 1 &&
+        value.length >= 2 &&
+        value.length <= 100
+      ) {
+        setErrorEmail(false);
+      } else {
+        setErrorEmail(true);
+      }
+    }
+
+    if (type === "phone") {
+      if (value.trim() === "") {
+        setErrorNumber(false);
+        return;
+      }
+
+      if (
+        value[0] === "+" &&
+        value[1] === "3" &&
+        value[2] === "8" &&
+        value.length === 13
+      ) {
+        setErrorNumber(false);
+      } else {
+        setErrorNumber(true);
+      }
     }
   };
 
@@ -142,48 +195,66 @@ const UserForm = ({ positions, onSubmit }) => {
       <FormContainer onSubmit={handleFormSubmit}>
         <TextInputsContainer>
           <FormInput
+            label="Name"
+            variant="outlined"
             onChange={handleChange}
             value={name}
             name="name"
             type="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             autoComplete="off"
-            placeholder="Your name"
+            placeholder="Name"
             maxLength={60}
             minLength={2}
-            required
+            error={errorName}
+            inputProps={{
+              style: { fontFamily: "nunito" },
+            }}
+            helperText={
+              errorName === true && "Name must be between 2 and 60 characters."
+            }
           />
 
           <FormInput
+            label="Email"
+            variant="outlined"
             onChange={handleChange}
             value={email}
             name="email"
             type="email"
-            min={2}
-            minLength={2}
-            max={100}
-            maxLength={100}
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             autoComplete="off"
             placeholder="Email"
-            required
+            error={errorEmail}
+            inputProps={{
+              style: { fontFamily: "nunito" },
+              minLength: 2,
+              maxLength: 100,
+              pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$",
+            }}
+            helperText={errorEmail === true && "Invalid email."}
           />
 
-          <NumberLabel>
-            <FormInput
-              onChange={handleChange}
-              value={phone}
-              type="tel"
-              name="phone"
-              pattern="^[\+]{1}380([0-9]{9})$"
-              max={13}
-              maxLength={13}
-              autoComplete="off"
-              placeholder="Phone"
-              required
-            />
-            <p>+38 (XXX) XXX - XX - XX</p>
-          </NumberLabel>
+          <FormInput
+            inputMode="numeric"
+            label="Phone"
+            variant="outlined"
+            placeholder="Phone"
+            onChange={handleChange}
+            value={phone}
+            name="phone"
+            inputProps={{
+              maxLength: 13,
+              autoComplete: "off",
+              type: "tel",
+            }}
+            error={errorNumber}
+            helperText={
+              errorNumber === true
+                ? "Number must be +38(XXX)XXX-XX-XX. Max length 13 characters"
+                : "+38(XXX)XXX-XX-XX"
+            }
+          />
         </TextInputsContainer>
 
         <PositionsContainer>
@@ -238,7 +309,12 @@ const UserForm = ({ positions, onSubmit }) => {
             <ButtonForm
               type="submit"
               disabled={
-                error === true || loading === true || emptyFields === true
+                error ||
+                loading ||
+                emptyFields ||
+                errorEmail ||
+                errorName ||
+                errorNumber
               }
             >
               Sign up
