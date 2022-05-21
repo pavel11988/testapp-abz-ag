@@ -194,6 +194,22 @@ const UserForm = ({ positions, onSubmit }) => {
       <FormContainer onSubmit={handleFormSubmit}>
         <TextInputsContainer>
           <FormInput
+            sx={{
+              "& .MuiInputLabel-root": { color: "var(--grey-text-color)" }, //styles the label
+              "& .MuiOutlinedInput-root": {
+                "& > fieldset": { borderColor: "" },
+              },
+              "& .MuiOutlinedInput-root.Mui-focused": {
+                "& > fieldset": {
+                  borderColor: "var(--secondary-color)",
+                },
+              },
+              "& .MuiOutlinedInput-root:hover": {
+                "& > fieldset": {
+                  borderColor: "var(--secondary-color)",
+                },
+              },
+            }}
             label="Name"
             variant="outlined"
             onChange={handleChange}
@@ -215,6 +231,22 @@ const UserForm = ({ positions, onSubmit }) => {
           />
 
           <FormInput
+            sx={{
+              "& .MuiInputLabel-root": { color: "var(--grey-text-color)" }, //styles the label
+              "& .MuiOutlinedInput-root": {
+                "& > fieldset": { borderColor: "" },
+              },
+              "& .MuiOutlinedInput-root.Mui-focused": {
+                "& > fieldset": {
+                  borderColor: "var(--secondary-color)",
+                },
+              },
+              "& .MuiOutlinedInput-root:hover": {
+                "& > fieldset": {
+                  borderColor: "var(--secondary-color)",
+                },
+              },
+            }}
             label="Email"
             variant="outlined"
             onChange={handleChange}
@@ -235,6 +267,22 @@ const UserForm = ({ positions, onSubmit }) => {
           />
 
           <FormInput
+            sx={{
+              "& .MuiInputLabel-root": { color: "var(--grey-text-color)" }, //styles the label
+              "& .MuiOutlinedInput-root": {
+                "& > fieldset": { borderColor: "" },
+              },
+              "& .MuiOutlinedInput-root.Mui-focused": {
+                "& > fieldset": {
+                  borderColor: "var(--secondary-color)",
+                },
+              },
+              "& .MuiOutlinedInput-root:hover": {
+                "& > fieldset": {
+                  borderColor: "var(--secondary-color)",
+                },
+              },
+            }}
             inputMode="numeric"
             label="Phone"
             variant="outlined"
