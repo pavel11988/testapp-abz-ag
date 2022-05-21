@@ -59,15 +59,18 @@ const UserForm = ({ positions, onSubmit }) => {
     switch (name) {
       case "name":
         setName(value);
-        validator({ type: "name", value: value });
+        setErrorName(false);
+        // validator({ type: "name", value: value });
         break;
       case "email":
         setEmail(value.trim());
-        validator({ type: "email", value: value });
+        setErrorEmail(false);
+        // validator({ type: "email", value: value });
         break;
       case "phone":
         setPhone(value.trim());
-        validator({ type: "phone", value: value });
+        setErrorNumber(false);
+        // validator({ type: "phone", value: value });
         break;
       default:
         return;
@@ -90,7 +93,7 @@ const UserForm = ({ positions, onSubmit }) => {
       }
       if (
         value.indexOf("@") > 1 &&
-        value.indexOf(".") > 3 &&
+        value.indexOf(".") > value.length - 4 &&
         value.indexOf(".") !== value.length - 1 &&
         value.length >= 2 &&
         value.length <= 100
@@ -111,6 +114,7 @@ const UserForm = ({ positions, onSubmit }) => {
         value[0] === "+" &&
         value[1] === "3" &&
         value[2] === "8" &&
+        value[3] === "0" &&
         value.length === 13
       ) {
         setErrorNumber(false);
@@ -153,14 +157,29 @@ const UserForm = ({ positions, onSubmit }) => {
     setPhone("");
     setPhotoFile(null);
     setUserPositionId(null);
+    setErrorName(false);
+    setErrorEmail(false);
+    setErrorNumber(false);
   }
 
   async function handleFormSubmit(e) {
     e.preventDefault();
-    setLoading(true);
+
     const form = e.target;
 
-    if (error === false || emptyFields === false) {
+    await validator({ type: "name", value: name });
+    await validator({ type: "email", value: email });
+    await validator({ type: "phone", value: phone });
+
+    if (
+      error === false &&
+      emptyFields === false &&
+      errorEmail === false &&
+      errorName === false &&
+      errorNumber === false
+    ) {
+      setLoading(true);
+
       const user = {
         photo: photoFile,
         name: form.name.value,
@@ -252,8 +271,8 @@ const UserForm = ({ positions, onSubmit }) => {
             onChange={handleChange}
             value={email}
             name="email"
-            type="email"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            // type="email"
+            // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             autoComplete="off"
             placeholder="Email"
             error={errorEmail}
@@ -261,7 +280,7 @@ const UserForm = ({ positions, onSubmit }) => {
               style: { fontFamily: "nunito" },
               minLength: 2,
               maxLength: 100,
-              pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$",
+              // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$",
             }}
             helperText={errorEmail === true && "Invalid email."}
           />
