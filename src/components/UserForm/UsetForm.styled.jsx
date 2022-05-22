@@ -38,15 +38,9 @@ export const TextInputsContainer = styled.div`
 export const FormInput = styled(TextField)`
   width: 328px;
   height: 54px;
-
-  /* color: red; */
-
   margin-bottom: 50px;
 
-  /* padding: 14px 0px 14px 16px;  */
-
   background-color: var(--background-color);
-  /* border: 1px solid var(--border-color); */
   border-radius: 4px;
   outline: transparent;
 

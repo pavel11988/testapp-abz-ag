@@ -60,17 +60,15 @@ const UserForm = ({ positions, onSubmit }) => {
       case "name":
         setName(value);
         setErrorName(false);
-        // validator({ type: "name", value: value });
         break;
       case "email":
         setEmail(value.trim());
         setErrorEmail(false);
-        // validator({ type: "email", value: value });
         break;
       case "phone":
         setPhone(value.trim());
         setErrorNumber(false);
-        // validator({ type: "phone", value: value });
+
         break;
       default:
         return;
@@ -271,8 +269,6 @@ const UserForm = ({ positions, onSubmit }) => {
             onChange={handleChange}
             value={email}
             name="email"
-            // type="email"
-            // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             autoComplete="off"
             placeholder="Email"
             error={errorEmail}
@@ -280,7 +276,6 @@ const UserForm = ({ positions, onSubmit }) => {
               style: { fontFamily: "nunito" },
               minLength: 2,
               maxLength: 100,
-              // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$",
             }}
             helperText={errorEmail === true && "Invalid email."}
           />
