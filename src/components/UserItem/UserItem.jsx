@@ -1,5 +1,6 @@
 //images
 import photoDefault from "../../images/photo-cover.jpg";
+import PropTypes from "prop-types";
 
 //components styled
 import {
@@ -37,6 +38,14 @@ const UserItem = ({ email, name, phone, photo, position }) => {
       <Phone>{phone}</Phone>
     </Item>
   );
+};
+
+UserItem.propTypes = {
+  email: PropTypes.string,
+  name: PropTypes.string,
+  phone: PropTypes.string,
+  photo: PropTypes.string,
+  position: PropTypes.string,
 };
 
 export default UserItem;

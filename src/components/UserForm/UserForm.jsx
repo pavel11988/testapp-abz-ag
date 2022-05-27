@@ -1,4 +1,5 @@
 //libs/hooks
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
 //components
@@ -385,6 +386,11 @@ const UserForm = ({ positions, onSubmit }) => {
       </FormContainer>
     </SignInFormContainer>
   );
+};
+
+UserForm.propTypes = {
+  positions: PropTypes.arrayOf(PropTypes.object),
+  onSubmit: PropTypes.func,
 };
 
 export default UserForm;

@@ -1,6 +1,7 @@
 //components
 import UserItem from "../UserItem/UserItem";
 import { List, TitleUsersList } from "./UserList.styled";
+import PropTypes from "prop-types";
 
 //components styled
 
@@ -32,6 +33,11 @@ const UserList = ({ users, loading }) => {
       </List>
     </>
   );
+};
+
+UserList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool,
 };
 
 export default UserList;
